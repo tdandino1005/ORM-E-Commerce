@@ -1,8 +1,56 @@
 {
+
+  "name": "orm-e-commerce",
+
+  "description": "ORM-E-Commerce",
+
+  "version": "1.0.0",
+
+  "main": "index.js",
+
+  "scripts": {
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "start": "node server.js",
+
+    "seed": "node seeds/index.js"
+
+  },
+
+  "repository": {
+
+    "type": "git",
+
+    "url": "git+https://github.com/tdandino1005/ORM-E-Commerce.git"
+
+  },
+
+  "author": "Tony Dandino",
+
+  "license": "ISC",
+
+  "bugs": {
+
+    "url": "https://github.com/tdandino1005/ORM-E-Commerce/issues"
+
+  },
+
+  "homepage": "https://github.com/tdandino1005/ORM-E-Commerce#readme",
+
   "dependencies": {
+
+    "bcrypt": "^5.1.0",
+
     "dotenv": "^16.0.3",
+
     "express": "^4.18.2",
+
     "mysql2": "^3.2.0",
+
     "sequelize": "^6.29.3"
+
   }
+
 }
+
