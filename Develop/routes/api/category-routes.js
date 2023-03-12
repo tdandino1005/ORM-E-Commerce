@@ -40,14 +40,16 @@ router.get('/:id', (req, res) => {
       }
     ]
   })
-  .then(categoryData => 
-    // use if statement to return a 404 error if no category is found
-    if(!categoryData) {
+  // use promise method to pass the categories data to the homepage
+  // used .then() to pass the categories data to the homepage
+  .then(categoryData => {
+    if (!categoryData) {
       res.status(404).json({ message: 'No category found with this id' });
       return;
     }
     res.json(categoryData);
   })
+  // use catch method to return a 500 error if there is a server error
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
