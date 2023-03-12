@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
   })
   .then(categoryData => 
     // use if statement to return a 404 error if no category is found
-    if (!categoryData) {
+    if(!categoryData) {
       res.status(404).json({ message: 'No category found with this id' });
       return;
     }
