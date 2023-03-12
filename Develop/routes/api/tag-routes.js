@@ -1,127 +1,73 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
-// The `/api/tags` endpoint
-
-router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
-  // used Tag.findAll() to find all tags
-  Tag.findAll({
-    attributes: ['id', 'tag_name'],
-    include: [
-      {
-        model: Product,
-        attributes: ['id', 'product_name']
-
-      }
-    ]
-  })
-  // use promise method to pass the tags data to the homepage
-  .then(tagData => res.json(tagData))
-  .catch(err => {
-    console.log(err);
+router.get('/', async (req, res) => {
+  try {
+    const tagData = await Tag.findAll({
+      include: { all: true, nested: true },
+    });
+    res.status(200).json(tagData);
+  } catch (err) {
     res.status(500).json(err);
-  });
-});
-
-// create the GET route for /api/tags/:id
-router.get('/:id', (req, res) => {
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
-Tag.findOne({
-  where: {
-    id: req.params.id
-  },
-  // used Tag.findOne() to find a single tag by its `id`
-  include: [
-    {
-      model: Product,
-      attributes: ['id', 'product_name', 'price', 'stock']
-    }
-  ]
-
-})
-// use if statement to return a 404 error if no tag is found
-.then(tagData => {
-  if (!tagData) {
-    res.status(404).json({ message: 'No tag found with this id' });
-    return;
   }
-  res.json(tagData);
-})
-// use catch method to return a 500 error if there is a server error
-.catch(err => {
-  console.log(err);
-  res.status(500).json(err);
-});
 });
 
-router.post('/', (req, res) => {
-  // create a new tag
-  Tag.create({
-    tag_name: req.body.tag_name
-  })
-  // use promise method to pass the tags data to the homepage
-  .then(tagData => res.json(tagData))
-  .catch(err => {
-    // use catch method to return a 500 error if there is a server error
-    console.log(err);
+router.get('/:id', async (req, res) => {
+  try {
+    const tagData = await Tag.findByPk(req.params.id, {
+      include: { all: true, nested: true },
+    });
+    if (!tagData) {
+      res.status(404).json({ message: 'No Tag found with this ID' });
+      return;
+    }
+    res.status(200).json(tagData);
+  } catch (err) {
     res.status(500).json(err);
-  });
+  }
 });
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
-  // use Tag.update() to update a tag's name by its `id` value
-  Tag.update(
-    {
-      tag_name: req.body.tag_name
-    },
-    {
+router.post('/', async (req, res) => {
+  try {
+    const tagData = await Tag.create(req.body);
+    res.status(200).json(tagData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  try {
+    const tagData = await Tag.update(req.body, {
       where: {
-        id: req.params.id
-      }
-    }
-  )
-  // use promise method to pass the tags data to the homepage
-  .then(tagData => {
-    // use if statement to return a 404 error if no tag is found
-    if (!tagData) {
-      res.status(404).json({ message: 'No tag found with this id' });
+        id: req.params.id,
+      },
+    });
+    if (!tagData[0]) {
+      res.status(404).json({ message: 'No Tag found with this ID' });
       return;
     }
-    // use catch method to return a 500 error if there is a server error
-    res.json(tagData);
-  })
-  .catch(err => {
-    console.log(err);
+    res.status(200).json(tagData);
+  } catch (err) {
     res.status(500).json(err);
-  }); 
+  }
 });
 
-router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
-  // use Tag.destroy() to delete on tag by its `id` value
-  Tag.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-  // use promise method to pass the tags data to the homepage
-  .then(tagData => {
-    // use if statement to return a 404 error if no tag is found
+router.delete('/:id', async (req, res) => {
+  try {
+    const tagData = await Tag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
     if (!tagData) {
-      res.status(404).json({ message: 'No tag found with this id' });
+      res.status(404).json({ message: 'No Tag found with this ID' });
       return;
     }
-    // use catch method to return a 500 error if there is a server error
-    res.json(tagData);
-  })
-  .catch(err => {
-    console.log(err);
+    res.status(200).json(tagData);
+  } catch (err) {
     res.status(500).json(err);
-  });
+  }
 });
 
 module.exports = router;
