@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     ]
   })
   // use promise method to pass the tags data to the homepage
-  .then(dbTagData => res.json(dbTagData))
+  .then(tagData => res.json(tagData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -43,12 +43,12 @@ Tag.findOne({
 
 })
 // use if statement to return a 404 error if no tag is found
-.then(dbTagData => {
-  if (!dbTagData) {
+.then(tagData => {
+  if (!tagData) {
     res.status(404).json({ message: 'No tag found with this id' });
     return;
   }
-  res.json(dbTagData);
+  res.json(tagData);
 })
 // use catch method to return a 500 error if there is a server error
 .catch(err => {
@@ -63,7 +63,7 @@ router.post('/', (req, res) => {
     tag_name: req.body.tag_name
   })
   // use promise method to pass the tags data to the homepage
-  .then(dbTagData => res.json(dbTagData))
+  .then(tagData => res.json(tagData))
   .catch(err => {
     // use catch method to return a 500 error if there is a server error
     console.log(err);
@@ -85,14 +85,14 @@ router.put('/:id', (req, res) => {
     }
   )
   // use promise method to pass the tags data to the homepage
-  .then(dbTagData => {
+  .then(tagData => {
     // use if statement to return a 404 error if no tag is found
-    if (!dbTagData) {
+    if (!tagData) {
       res.status(404).json({ message: 'No tag found with this id' });
       return;
     }
     // use catch method to return a 500 error if there is a server error
-    res.json(dbTagData);
+    res.json(tagData);
   })
   .catch(err => {
     console.log(err);
@@ -109,14 +109,14 @@ router.delete('/:id', (req, res) => {
     }
   })
   // use promise method to pass the tags data to the homepage
-  .then(dbTagData => {
+  .then(tagData => {
     // use if statement to return a 404 error if no tag is found
-    if (!dbTagData) {
+    if (!tagData) {
       res.status(404).json({ message: 'No tag found with this id' });
       return;
     }
     // use catch method to return a 500 error if there is a server error
-    res.json(dbTagData);
+    res.json(tagData);
   })
   .catch(err => {
     console.log(err);

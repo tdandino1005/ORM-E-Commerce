@@ -13,6 +13,7 @@ Tag.init(
       primaryKey: true,
       autoIncrement: true,
   },
+  
   // defined a tag_name column
   tag_name: {
     type: DataTypes.STRING,

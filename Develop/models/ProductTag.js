@@ -13,6 +13,7 @@ ProductTag.init(
       primaryKey: true,
       autoIncrement: true,
   },
+
   // defined a product_id column
   product_id: {
     type: DataTypes.INTEGER,
@@ -21,6 +22,7 @@ ProductTag.init(
       key: 'id',
     }
   },
+
   // defined a tag_id column
   tag_id: {
     type: DataTypes.INTEGER,
@@ -30,6 +32,7 @@ ProductTag.init(
     }
   }
 },
+
 // defined configuration options
   {
     sequelize,
