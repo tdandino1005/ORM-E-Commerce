@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { response } = require('express');
-const { restart } = require('nodemon');
 const { Category, Product } = require('../../models');
 
 router.get('/', async (req, res) => {
