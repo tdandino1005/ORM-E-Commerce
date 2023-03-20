@@ -1,6 +1,8 @@
+//  Using the Product model, create the following routes:
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
+// Using try/catch to get all products and include its associated Category and Tag data
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({
@@ -18,6 +20,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Using router.get to find a single product by its `id` and include its associated Category and Tag data
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {

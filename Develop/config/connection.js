@@ -1,7 +1,9 @@
+// requiring dotenv to use .env file
 require('dotenv').config();
 
 const Sequelize = require('sequelize');
 
+// Create connection to our database, pass in your MySQL information for username and password
 const sequelize = process.env.JAWSDB_URL
   ? new Sequelize(process.env.JAWSDB_URL)
   : new Sequelize(
@@ -9,6 +11,7 @@ const sequelize = process.env.JAWSDB_URL
     process.env.DB_USER, 
     process.env.DB_PW, 
     
+    // Showing port and dialect options
     {
       host: 'localhost',
       dialect: 'mysql',

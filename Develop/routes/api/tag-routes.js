@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Creating a new tag route to get a single tag by its `id`
 router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {
@@ -28,6 +29,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// Creating a new tag route to create a new tag
 router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body);
@@ -37,6 +39,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Creating a new tag route to update a tag's name by its `id` value
 router.put('/:id', async (req, res) => {
   try {
     const tagData = await Tag.update(req.body, {
@@ -54,6 +57,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Creating a new tag route to delete a tag by its `id` value
 router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
