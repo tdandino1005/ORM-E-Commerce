@@ -1,3 +1,4 @@
+// using model and data types from sequelize
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
@@ -21,6 +22,7 @@ Category.init(
   }
   },
   {
+    // pass in our imported sequelize connection (the direct connection to our database)
     sequelize,
     timestamps: false,
     freezeTableName: true,
