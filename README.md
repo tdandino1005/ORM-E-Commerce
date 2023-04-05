@@ -4,13 +4,14 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [Questions](#questions)
 
 ## Description:
+
 This is an e-commerce back-end database. It uses a mysql database along with dotenv, express, and Insomnia.
 
 ## Installation:
+
 - Insomnia
 - express
 - mysql2
@@ -33,12 +34,6 @@ Link to Video Demonstration:
 - quit  
 - npm run seed
 - npm start
-
-
-## Contributing:
-
-Starter code was already provided for this project: https://github.com/coding-boot-camp/fantastic-umbrella.
-
 
 
 ## Questions:
