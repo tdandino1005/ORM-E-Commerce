@@ -22,7 +22,10 @@ This is an e-commerce back-end database. It uses a mysql database along with dot
 
 Link to Video Demo:
 
-video1655964738.mp4
+
+https://user-images.githubusercontent.com/114967217/229967923-e1a7e646-7913-4c55-a4c8-8109d65df5cf.mp4
+
+
 
 
 
